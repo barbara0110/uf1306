@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/application.css" />
     <link rel="stylesheet" type="text/css" href="../assets/css/formularios.css" />
     <title>UF1306 | Validación de formularios</title>
-    <script src="../assets/js/formularios1.js"></script>
+    <script src="../assets/js/formularios2.js"></script>
 </head>
 
   <body>
@@ -63,11 +63,19 @@
                   <label for="name">Nombre:</label>
                   <!-- pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}" Esto es un patrón de validación en html -->
                   <!-- title="Sólo se admiten letras del alfabeto español y espacios en blanco" -->
-                  <input type="text" placeholder="Nombre" name="name" id="name"> 
+                  <input type="text" placeholder="Nombre" name="name" id="name" required> 
                 </li>
                 <li>
                   <label for="email">E-mail:</label>
                   <input type="email" placeholder="Correo electrónico" name="email" id="email">
+                </li>
+                <li>
+                    <label for="tfno">Teléfono:</label>
+                    <input type="text" placeholder="Teléfono" name="tfno" id="tfno">
+                </li>
+                <li>
+                    <label for="edad">Edad:</label>
+                    <input type="number" placeholder="Edad" name="edad" id="edad"> 
                 </li>
                 <li class="radio">
                   <input type="radio" id="hombre" name="genero" value="H">
@@ -77,10 +85,7 @@
                   <input type="radio" id="mujer" name="genero" value="M">
                   <label for="mujer">Mujer</label>
                 </li>
-                <li>
-                  <input type="radio" id="nobinario" name="genero" value="NB">
-                  <label for="nobinario">No binario</label>
-                </li>
+                
                 <li>
                   <input type="checkbox" name="acepto" id="acepto">
                   <label for="acepto">Acepto los términos y condiciones de uso. Más información en <a href="https://es.wikipedia.org/wiki/Pol%C3%ADtica_de_privacidad">Politica de privacidad</a></label>
