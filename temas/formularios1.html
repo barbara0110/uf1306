@@ -10,8 +10,8 @@
     <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/vnd.microsoft.icon" />
     <link rel="stylesheet" type="text/css" href="../assets/css/application.css" />
     <link rel="stylesheet" type="text/css" href="../assets/css/formularios.css" />
-    <script src="formularios.js"></script>
     <title>UF1306 | Validación de formularios</title>
+    <script src="../assets/js/formularios1.js"></script>
 </head>
 
   <body>
@@ -52,20 +52,22 @@
             <h2>Validación de formularios web</h2>
         </header>
         <article >
-          <h2></h2>
+          <h2>Formulario de contacto</h2>
 
           <form action="#" method="post" class="form" id="form">
             <fieldset>
-              <legend>Formulario de registro</legend>
+              <legend>Formulario de contacto</legend>
 
               <ul>
                 <li>
                   <label for="name">Nombre:</label>
-                  <input type="text" name="name" id="name"> 
+                  <!-- pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}" Esto es un patrón de validación en html -->
+                  <!-- title="Sólo se admiten letras del alfabeto español y espacios en blanco" -->
+                  <input type="text" placeholder="Nombre" name="name" id="name"> 
                 </li>
                 <li>
                   <label for="email">E-mail:</label>
-                  <input type="email" name="email" id="email">
+                  <input type="email" placeholder="Correo electrónico" name="email" id="email">
                 </li>
                 <li class="radio">
                   <input type="radio" id="hombre" name="genero" value="H">
@@ -84,14 +86,21 @@
                   <label for="acepto">Acepto los términos y condiciones de uso. Más información en <a href="https://es.wikipedia.org/wiki/Pol%C3%ADtica_de_privacidad">Politica de privacidad</a></label>
 
                 </li>
+
+                <li class="textarea">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea name="mensaje" id="mensaje" cols="30" rows="5" placeholder="Escribe tu mensaje aquí"></textarea>
+                </li>
   
               </ul>
 
             </fieldset>
 
+            <p id="errores"></p>
+
             <ul class="enviar">
               <li>
-                <input type="submit" value="Enviar" id="enviar" disabled>
+                <input type="submit" value="Enviar" id="enviar">
               </li>
               <li>
                 <input type="reset" value="Borrar">
