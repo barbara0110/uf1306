@@ -57,6 +57,7 @@ function validarFormulario( enviar ) {
     // Resultado de la validación: por defecto, FALSE. El formualrio no está validado
     var validacion = false;
 
+
     // Validamos cada uno de los apartados con llamadas a sus funciones correspondientes.
     if (
         validarSoloTexto( nombre )
@@ -75,10 +76,16 @@ function validarFormulario( enviar ) {
         // Se impide el evento asignado por defecto al input type="submit"
         // es decir, se impide el envío del formulario
 
+     
+
         enviar.preventDefault();
 
         // return false; // validacion sigue siendo FALSE
     }
+
+    console.log("Error:" + "\n");
+    console.log("Validación:" + validacion + "\n");
+    console.log("------------------------");
 
     // Booleano final de la validación (true | false )
     return validacion;
@@ -244,12 +251,14 @@ function validarSoloTexto( elemento ) {
 
     // Función para validar email
 
+/*
 function validarEmail( elemento ) {
 
     var expresionRegular = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
     var validacion = validarObligatorio( elemento );
         
     switch ( validacion ) {
+    
         
         case true:
                    
@@ -264,3 +273,30 @@ function validarEmail( elemento ) {
     
         return validacion;
 }
+*/
+
+
+function validarEmail( elemento ) {
+
+    var expresionRegular = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+
+    var validacion = validarObligatorio( elemento );
+
+    switch ( validacion ) {
+
+        case true:
+            
+            var resultadoExpRegular = expresionRegular.exec( elemento.value );
+
+            if ( !resultadoExpRegular ) {
+
+                
+                validacion = mensajeError( 3, elemento );
+               
+            }
+        break;
+
+    }
+}
+
+
