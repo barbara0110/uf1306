@@ -61,7 +61,7 @@ function validarFormulario( enviar ) {
     if (
         validarSoloTexto( nombre )
         // && validarNumero( edad, 0, 120 )
-        // && validarEmail( email )
+        && validarEmail( email )
         // && validarTextarea( mensaje, 3, 255 )
         && confirm("¿Deseas enviar el formulario con estos datos?")
     ){
@@ -142,6 +142,12 @@ function mensajeError ( error, elemento="", min=0, max=300, id="errores" ) {
             texto += "Sólo acepta letras del alfabeto español y espacios en blanco";
             etiquetaInfo.innerHTML = texto;
         break;
+
+        case 3:
+            texto += "Por favor, indique un correo electrónico válido";
+            etiquetaInfo.innerHTML = texto;
+        break;
+
 
         // default:
     }
@@ -234,7 +240,27 @@ function validarSoloTexto( elemento ) {
 
         // default:
     }
+}
 
-    // Se devuelve el resultado de la validación (true | false)
-    return validacion;
+    // Función para validar email
+
+function validarEmail( elemento ) {
+
+    var expresionRegular = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+    var validacion = validarObligatorio( elemento );
+        
+    switch ( validacion ) {
+        
+        case true:
+                   
+            var resultadoExpRegular = expresionRegular.exec( elemento.value );
+        
+                if ( !resultadoExpRegular ) {  
+                        validacion = mensajeError( 3, elemento );  
+                }
+
+            break;
+            }
+    
+        return validacion;
 }
