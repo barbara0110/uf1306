@@ -17,11 +17,13 @@ window.onload = function() {
 
     /*
         addEventListener()
+
         Sintáxis:
         addEventListener( evento-a-escuchar, función-a-lanzar, booleano )
+
         Permanece a la escucha de un evento y cuando se activa ejecuta la función
     */
-   
+
     // El método addEventListener asigna las funciones a los tipos de evento
     // Evento onclick, tipo click, sobre el objeto element HTML
     // con id 'enviar'
@@ -34,13 +36,18 @@ window.onload = function() {
 
 }
 
+
 /*
     Función validarFormulario()
+
     Parámetro: objectHTMLImputElement
+
     Realiza las validaciones de los campos de formulario
     Según los requisitos del Enunciado
+
     Si todos los campos son válidos se envía el formulario
     si no, no se envía el formulario y se deshabilita el botón de enviar
+
     @return: booleano
 */
 
@@ -52,11 +59,9 @@ function validarFormulario( enviar ) {
     var edad = document.getElementById("edad");
     var email = document.getElementById("email");
     var mensaje = document.getElementById("mensaje");
-    var tfno = document.getElementById("tfno");
 
-    // Resultado de la validación: por defecto, FALSE. El formualrio no está validado
+    // Resultado de la validación: por defecto, FALSE
     var validacion = false;
-
 
     // Validamos cada uno de los apartados con llamadas a sus funciones correspondientes.
     if (
@@ -76,34 +81,34 @@ function validarFormulario( enviar ) {
         // Se impide el evento asignado por defecto al input type="submit"
         // es decir, se impide el envío del formulario
 
-     
-
         enviar.preventDefault();
 
         // return false; // validacion sigue siendo FALSE
     }
 
-    console.log("Error:" + "\n");
-    console.log("Validación:" + validacion + "\n");
-    console.log("------------------------");
-
     // Booleano final de la validación (true | false )
     return validacion;
 }
 
+
 /*
     Función mensajeError()
+
     Parámetros:
         error: Number. El nº de error a mostrar en el texto de info al usuario
         name: String. El name del input que no supera la validación
         id: String. El ID del elemento que muestra el mensaje de error
+
     Agrupa todos los errores por numeros en una sóla función.
+
     Cada número de error tiene asignado un texto informativo al usuario
+
     Se obtiene un elemennto del DOM por ID donde mostrar un mensaje al usuario
         El ID de ese elemento, por defecto, es 'errores'
         Se inserta en el DOM un texto informativo sobre el fallo de validación
         Se cambia la clase de ese elemento
             para aplicar estilos CSS según el nº de error
+
     @return: Booleano
 */
 
@@ -151,10 +156,9 @@ function mensajeError ( error, elemento="", min=0, max=300, id="errores" ) {
         break;
 
         case 3:
-            texto += "Por favor, indique un correo electrónico válido";
+            texto += "El correo electrónico no parece un email válido";
             etiquetaInfo.innerHTML = texto;
         break;
-
 
         // default:
     }
@@ -167,11 +171,16 @@ function mensajeError ( error, elemento="", min=0, max=300, id="errores" ) {
 
 /*
     Función validarObligatorio()
+
     Parámetro: objectHTMLImputElement
+
         Comprueba si el campo es obligatorio por su atributo 'required'
         y, de serlo, también debe cumplir que contenga algo.
+
         Si no supera la condición, ejecuta el mensajeError(1) que retorna FALSE
+
         El resto de casos retorna el valor inicial TRUE
+
     @return: Booleano
 */
 
@@ -199,11 +208,16 @@ function validarObligatorio( elemento ) {
 
 /*
     Función validarSoloTexto()
+
     Parámetro: objectHTMLImputElement
+
     Comprueba si la validación supera validarObligatorio()
         De ser así, ejecuta la validación por expresión regular
+
     Si la supera retorna TRUE
+
     Si no, ejecuta el mensajeError(2) y retorna FALSE
+
     @return: Booleano
 */
 
@@ -247,33 +261,10 @@ function validarSoloTexto( elemento ) {
 
         // default:
     }
+
+    // Se devuelve el resultado de la validación (true | false)
+    return validacion;
 }
-
-    // Función para validar email
-
-/*
-function validarEmail( elemento ) {
-
-    var expresionRegular = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-    var validacion = validarObligatorio( elemento );
-        
-    switch ( validacion ) {
-    
-        
-        case true:
-                   
-            var resultadoExpRegular = expresionRegular.exec( elemento.value );
-        
-                if ( !resultadoExpRegular ) {  
-                        validacion = mensajeError( 3, elemento );  
-                }
-
-            break;
-            }
-    
-        return validacion;
-}
-*/
 
 
 function validarEmail( elemento ) {
@@ -285,18 +276,14 @@ function validarEmail( elemento ) {
     switch ( validacion ) {
 
         case true:
-            
             var resultadoExpRegular = expresionRegular.exec( elemento.value );
 
             if ( !resultadoExpRegular ) {
 
-                
                 validacion = mensajeError( 3, elemento );
-               
             }
         break;
-
     }
+
+    return validacion;
 }
-
-
