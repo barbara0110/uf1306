@@ -67,10 +67,10 @@ function validarFormulario( enviar ) {
     // Validamos cada uno de los apartados con llamadas a sus funciones correspondientes.
     if (
         validarSoloTexto( nombre )
-        // && validarNumero( edad, 0, 120 )
+        && validarNumero( edad, 18, 120 )
         && validarEmail( email )
         && validarTelefono( tfno )
-        // && validarTextarea( mensaje, 3, 255 )
+        && validarTextarea( mensaje, 4, 255 )
         && confirm("¿Deseas enviar el formulario con estos datos?")
     ){
         // El código de error 0 Devuelve TRUE ( @return = true )
@@ -164,6 +164,18 @@ function mensajeError ( error, elemento="", min=0, max=300, id="errores" ) {
 
         case 4:
             texto += "El número introducido no es válido";
+            etiquetaInfo.innerHTML = texto;
+        break;
+
+        case 5:
+            texto += "Debe estar comprendido entre ";
+            texto += min + " y " + max;
+            etiquetaInfo.innerHTML = texto;
+        break;
+
+        case 6:
+            texto += "El mensaje debe estar comprendido entre  ";
+            texto += min + " y " + max + " caracteres";
             etiquetaInfo.innerHTML = texto;
         break;
 
@@ -313,6 +325,46 @@ function validarTelefono( elemento ) {
             if ( !resultadoExpRegular ) {
 
                 validacion = mensajeError( 4, elemento );
+            }
+        break;
+    }
+
+    return validacion;
+}
+
+// Función para validar Edad
+
+function validarNumero( elemento, min, max ) {
+
+    var validacion = true;
+
+    switch ( validacion ) {
+
+        case true:
+
+            if ( elemento.value <min || elemento.value >max) {
+
+                validacion = mensajeError( 5, elemento, min, max );
+            }
+        break;
+    }
+
+    return validacion;
+}
+
+function validarTextarea( elemento, minimo, maximo ) {
+
+    var validacion = validarObligatorio( elemento );
+
+    var texto = elemento.value;
+
+    switch ( validacion ) {
+
+        case true:
+
+            if ( texto.length <minimo || texto.length >maximo) {
+
+                validacion = mensajeError( 6, elemento, minimo, maximo );
             }
         break;
     }
