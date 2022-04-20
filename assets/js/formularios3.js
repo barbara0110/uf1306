@@ -13,6 +13,10 @@ window.onload = function() {
     $("#enviar").on("click", validarFormulario);
 }
 
+window.onload = function() {
+    $("#cambiarcontrasinal").on("click", validarNuevoPass);
+}
+
 
 $(
     function() {
@@ -38,6 +42,12 @@ $(
     }
 );
 
+function validarNuevoPass() {
+    $("#cambiarclave").validate({
+
+    });
+
+}
 
 function validarFormulario () {
     $('#form').validate ({

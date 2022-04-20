@@ -54,7 +54,7 @@
             <h2>Validación de formularios web</h2>
         </header>
         <article >
-          <h2>Formulario de contacto</h2>
+          <h3>Formulario de contacto</h3>
 
           <form action="enviado.html" method="post" class="form" id="form">
             <fieldset>
@@ -116,6 +116,43 @@
             
           </form>
   
+        </article>
+
+        <article>
+            <h3>Modificar contraseña</h3>
+            <form action="enviado.html" method="post" class="form" id="cambiarclave">
+                <fieldset>
+                    <legend>Resetear contraseña</legend>
+                    <ul>
+                        <li>
+                            <label for="usuario">Usuario:</label>
+                            <input type="email" placeholder="Correo electrónico" name="usuario" id="usuario">
+                        </li>
+                        <li>
+                            <label for="contrasinal">Nueva contraseña:</label>
+                            <input type="password" placeholder="Contraseña" name="contrasinal" id="contrasinal">
+
+                        </li>
+                        <li>
+                            <label for="repetircontrasinal">Repetir contraseña:</label>
+                            <input type="password" placeholder="Contraseña" name="repetircontrasinal" id="repetircontrasinal">
+
+                        </li>
+                        
+                    </ul>
+
+                </fieldset>
+
+                <ul class="enviar">
+                    <li>
+                      <input type="submit" value="Cambiar contraseña" id="cambiarcontasinal">
+                    </li>
+                    <li>
+                      <input type="reset" value="Borrar">
+                    </li>
+                  </ul>
+
+            </form>
         </article>
       </section>
       
