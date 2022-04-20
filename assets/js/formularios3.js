@@ -1,5 +1,5 @@
 /*
- * Gestión de eventos y formularios en JSON
+ * Gestión de eventos y formularios en JavaScript
 */
 
 /*
@@ -13,52 +13,97 @@ window.onload = function() {
     $("#enviar").on("click", validarFormulario);
 }
 
-$(function() {
-    const expresionRegular = /^[a-zA-ZÑñáéíóúÁÉÍÓÚ\s]+$/;
 
-    $.validator.addMethod("alfabeto", function(value, element){
-        return this.optional(element) || expresionRegular.test(value);
+$(
+    function() {
+        // Expresión regular para aceptar sólo letras del alfabeto español
 
-    })
+        const expresionRegular = /^[a-zA-ZÑñáéíóúÁÉÍÓÚ\s]+$/;
 
+        $.validator.addMethod('alfabeto', function(value, element) {
+            return this.optional(element) || expresionRegular.test(value);
+        })
+    }
+);
+
+$(
+    function() {
+        // Expresión regular para aceptar teléfonos válidos
+    
+        const expresionRegular = /^[6-9]{1}[0-9]{8}$/;
+
+        $.validator.addMethod('telefono', function(value, element) {
+            return this.optional(element) || expresionRegular.test(value);
+        })
     }
 );
 
 
-function validarFormulario() {
-
-    $("#form").validate({
+function validarFormulario () {
+    $('#form').validate ({
         rules: {
-            name:{
+
+            name: {
                 required: true,
                 alfabeto: true,
                 maxLength: 50
             },
 
-            email:{
+            email : {
                 required: true,
                 email: true
+            },
+
+            tfno: {
+                telefono: true
 
             },
-            
-            edad:{
+
+            edad: {
                 required: true,
                 digits: true,
                 min: 18,
-                max: 120
+                max:120
+            }
+            ,
+            mensaje: {
+                required: true,
+                minLength: 5,
+                maxLength: 255
+
 
             }
         },
-
         messages: {
             name: {
-                required:"El campo nombre es obligatorio",
-                alfabeto:"Solo puede contener letras del alfabeto español y espacios en blanco"
+                required: "El campo nombre es obligatorio",
+                alfabeto: "El nombre sólo puede contener letras del alfabeto español y espacios en blanco",
+                maxLength: "El campo nombre no puede exceder 50 caracteres"
+            },
+
+            email : {
+                required: "El campo email es obligatorio",
+                email: "Por favor, introduzca un correo electrónico válido"
+            },
+
+            tfno: {
+                telefono: "Por favor, introduzca un teléfono válido"
+
+            },
+
+            edad: {
+                required: "El campo edad es obligatorio",
+                digits: "El campo edad solo debe contener números",
+                min: "Tu edad no puede ser menor de 18 años",
+                max: "Tu edad no puede superar los 120 años"
+            },
+            mensaje: {
+                required: "El campo mensaje es obligatorio",
+                minLength: "El mensaje debe tener al menos 5 caracteres",
+                maxLength: "El mensaje no puede exceder los 255 caracteres"
+
+
             }
-
         }
-
-
     });
-
 }
